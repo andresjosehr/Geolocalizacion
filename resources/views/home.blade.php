@@ -27,6 +27,7 @@
              
 
             @include("header");
+            @include("modal");
 
     <style>
       .map {
@@ -41,18 +42,14 @@
     </style>
 
 
+
+
         <!-- page content -->
         <div class="right_col section-mapa" role="main">
            <div id="map" class="map"></div>
         </div>
-        <div id="popup">
-        </div>
-        <!-- /page content -->
 
-
-      </div>
-    </div>
-
+        <button type="button" class="btn btn-primary instalacion-info" id="instalacion-info" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
     <script type="text/javascript">
 
 
@@ -71,10 +68,6 @@
           rainfall: 500
           });
           vectorSource.addFeature(iconFeature);
-
-
-
-
 
 
     //create the style
@@ -101,11 +94,16 @@
       target: document.getElementById('map'),
       view: new ol.View({
       center: [-72.069960, -37.157991],
-      zoom: 10,
+      zoom: 16,
       projection: 'EPSG:4326'
       })
     });
 
+          map.on("click", function(e) {
+          map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
+              $(".instalacion-info").click();
+          })
+      });
 
 
 

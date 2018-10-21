@@ -29,13 +29,13 @@
     <!-- Custom Theme Style -->
     <link href="css/custom.min.css" rel="stylesheet">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- Latest compiled and minified CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
 
 
-<script src="https://openlayers.org/en/v4.5.0/build/ol-debug.js"></script>
-<link href="https://openlayers.org/en/v4.5.0/css/ol.css" rel="stylesheet" />
+    <script src="https://openlayers.org/en/v4.5.0/build/ol-debug.js"></script>
+    <link href="https://openlayers.org/en/v4.5.0/css/ol.css" rel="stylesheet" />
 
   </head>
 
