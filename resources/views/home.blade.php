@@ -39,6 +39,9 @@
         min-height: 100% !important;
         max-height: 100% !important;
       }
+      .right_col{
+        margin-top: -19px !important;
+      }
     </style>
 
 
@@ -77,7 +80,7 @@
         anchorXUnits: 'fraction',
         anchorYUnits: 'pixels',
         opacity: 0.75,
-        src: 'http://openlayers.org/en/v3.9.0/examples/data/icon.png'
+        src: 'images/marcador.png'
       }))
     });
 
@@ -111,7 +114,117 @@
 
 
 
+
+
+
+
     </script>
+
+    <script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+      title: {
+            display: true,
+            text: 'PH2',
+            position: "left"
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+var ctx = document.getElementById("myChart2");
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ["Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+      title: {
+            display: true,
+            text: 'PH 2',
+            position: "left"
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+    <!-- bootstrap-daterangepicker -->
+    <script src="moment/min/moment.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="jquery/dist/jquery.min.js"></script>
+
+    <!-- bootstrap-datetimepicker -->    
+    <script src="bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <!-- Ion.RangeSlider -->
+    <script src="ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+    <!-- Bootstrap Colorpicker -->
+    <script src="mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+    <!-- jquery.inputmask -->
+    <script src="jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    <!-- jQuery Knob -->
+    <script src="jquery-knob/dist/jquery.knob.min.js"></script>
+    <!-- Cropper -->
+    <script src="cropper/dist/cropper.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.min.js"></script>
 
@@ -147,12 +260,17 @@
     <script src="jqvmap/dist/jquery.vmap.js"></script>
     <script src="jqvmap/dist/maps/jquery.vmap.world.js"></script>
     <script src="jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="moment/min/moment.min.js"></script>
+    
     <script src="bootstrap-daterangepicker/daterangepicker.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.min.js"></script>
     
+
+          <script>
+            $('#myDatepicker').datetimepicker();  
+            $('#myDatepicker2').datetimepicker();  
+        </script>
+
   </body>
 </html>
