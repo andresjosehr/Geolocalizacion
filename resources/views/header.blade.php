@@ -73,14 +73,16 @@
             <!-- /menu profile quick info -->
 
             <br />
-
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <h3>Instalaciones</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i>Difusor y Fosa 5</a></li>
+                  @foreach($Instalacioness as $Instalacion)  
+                    <li><a><i class="fa fa-home"></i>{{ $Instalacion->nombre }}</a></li>
+                  @endforeach
                 </ul>
+
               </div>
             </div>
             <!-- /sidebar menu -->

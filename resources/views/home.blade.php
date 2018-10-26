@@ -57,21 +57,23 @@
 
 
 (function(){
+
+  function Marcador(lon, lat) {
     var vectorSource = new ol.source.Vector({
       //create empty vector
     });
-    
-    //create a bunch of icons and add to source vector
+
+      //create a bunch of icons and add to source vector
  
         var iconFeature = new ol.Feature({
           geometry: new  
-          ol.geom.Point([-72.069960, -37.157991]),
+          ol.geom.Point([lon, lat]),
           name: 'Null Island',
           population: 4000,
           rainfall: 500
-          });
-          vectorSource.addFeature(iconFeature);
+        });
 
+          vectorSource.addFeature(iconFeature);
 
     //create the style
     var iconStyle = new ol.style.Style({
@@ -84,34 +86,35 @@
       }))
     });
 
+      //add the feature vector to the layer vector, and apply a style to whole layer
+      var vectorLayer = new ol.layer.Vector({
+        source: vectorSource,
+        style: iconStyle
+      });
 
+      return vectorLayer
 
-    //add the feature vector to the layer vector, and apply a style to whole layer
-    var vectorLayer = new ol.layer.Vector({
-      source: vectorSource,
-      style: iconStyle
-    });
+    }
+
+    
 
     var map = new ol.Map({
-      layers: [new ol.layer.Tile({ source: new ol.source.OSM() }), vectorLayer],
+      layers: [new ol.layer.Tile({ source: new ol.source.OSM() }), @foreach ($Instalacioness as $Instalacion) Marcador({{ $Instalacion->longitud }}, {{ $Instalacion->latitud }}), @endforeach ],
       target: document.getElementById('map'),
       view: new ol.View({
       center: [-72.069960, -37.157991],
-      zoom: 16,
+      zoom: 7,
       projection: 'EPSG:4326'
       })
     });
 
-          map.on("click", function(e) {
+      map.on("click", function(e) {
           map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
               $(".instalacion-info").click();
           })
       });
 
-
-
 })();
-
 
 
 
