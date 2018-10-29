@@ -114,7 +114,7 @@
               <h1>Panel de Ingreso</h1>
               <h2 style="color: red;">{{ $errors->first('credenciales'), '<span class="help-block"></span>' }}</h2>
               <div>
-                <input type="email" name="email" id="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="E-mail" value="{{ old('email')}}" required />
+                <input type="text" name="email" id="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="E-mail" value="{{ old('email')}}" required />
                 {{ $errors->first('email'), '<span class="help-block">Email Invalido</span>' }}
               </div>
                 @if ($errors->has('email'))
