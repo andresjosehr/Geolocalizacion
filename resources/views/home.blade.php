@@ -48,27 +48,30 @@
 
 
         <!-- page content -->
+        <h1 id="contenedor" style="padding-left: 260px;padding-bottom: 29px;"></h1>
         <div class="right_col section-mapa" role="main">
-           <div id="map" class="map"></div>
+          <div id="map" class="map"></div>
         </div>
 
+        <button type="button" class="btn btn-primary instalacion-info2" id="instalacion-info" data-toggle="modal" data-target=".bs-example-modal-sm2">Small modal</button>
         <button type="button" class="btn btn-primary instalacion-info" id="instalacion-info" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
-    <script type="text/javascript">
+
+        <script type="text/javascript">
 
 
 (function(){
 
-  function Marcador(lon, lat) {
+  function Marcador(lon, lat, id) {
     var vectorSource = new ol.source.Vector({
       //create empty vector
     });
 
       //create a bunch of icons and add to source vector
- 
+        
         var iconFeature = new ol.Feature({
           geometry: new  
           ol.geom.Point([lon, lat]),
-          name: 'Null Island',
+          name: id,
           population: 4000,
           rainfall: 500
         });
@@ -82,7 +85,8 @@
         anchorXUnits: 'fraction',
         anchorYUnits: 'pixels',
         opacity: 0.75,
-        src: 'images/marcador.png'
+        src: 'images/marcador.png',
+        id: "1"
       }))
     });
 
@@ -99,7 +103,7 @@
     
 
     var map = new ol.Map({
-      layers: [new ol.layer.Tile({ source: new ol.source.OSM() }), @foreach ($Instalacioness as $Instalacion) Marcador({{ $Instalacion->longitud }}, {{ $Instalacion->latitud }}), @endforeach ],
+      layers: [new ol.layer.Tile({ source: new ol.source.OSM() }), @foreach ($Instalacioness as $Instalacion) Marcador({{ $Instalacion->longitud }}, {{ $Instalacion->latitud }}, {{ $Instalacion->id }}), @endforeach ],
       target: document.getElementById('map'),
       view: new ol.View({
       center: [-72.069960, -37.157991],
@@ -110,13 +114,25 @@
 
       map.on("click", function(e) {
           map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
-              $(".instalacion-info").click();
+
+              // $(".instalacion-info").click();
+
+              var id    = feature.values_.name;
+              var url   = "<?php echo Request::root() ?>/ConsultaInicialModal";
+              var datos = $('#consulta-form').serialize();
+
+              if (id==2) {
+                $(".instalacion-info2").click();
+              }
+              if (id==1) {
+                $(".instalacion-info").click();
+              }
+
+               // $("#contenedor").load(url, {id_instalacion: id});
           })
       });
 
 })();
-
-
 
 
 
@@ -172,6 +188,51 @@ var myChart = new Chart(ctx, {
     data: {
         labels: ["Blue", "Yellow", "Green", "Purple", "Orange"],
         datasets: [{
+            label: 'Litros por minuto',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+      title: {
+            display: true,
+            text: 'Litros',
+            position: "left"
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+
+
+var ctx = document.getElementById("myCharts");
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
             label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
@@ -196,7 +257,7 @@ var myChart = new Chart(ctx, {
     options: {
       title: {
             display: true,
-            text: 'PH 2',
+            text: 'PH2',
             position: "left"
         },
         scales: {
@@ -209,6 +270,8 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+
+    <script src="js/main.js">></script>
 
     <!-- bootstrap-daterangepicker -->
     <script src="moment/min/moment.min.js"></script>

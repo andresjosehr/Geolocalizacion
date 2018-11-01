@@ -15,5 +15,15 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-
 Route::get('/db_instalaciones', 'InstalacionesController@ConsultaInicial')->name('/db_instalaciones');
+
+
+// Route::get('/Prueba', function(){ return view('prueba'); }); 
+
+
+
+Route::post('/ConsultaInicialModal', 'InstalacionesController@Consulta24Hrs'); 
+
+// Route::post('/ConsultaInstalacion','InstalacionesController@post'); 
+
+

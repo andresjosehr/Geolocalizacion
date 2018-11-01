@@ -11,3 +11,5 @@ npm-debug.log
 yarn-error.log
 .phpunit.result.cache
 config/database.php
+.env
+config/database.php

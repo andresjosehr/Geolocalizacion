@@ -41,14 +41,14 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', '45.7.231.75'),
             'port' => env('DB_PORT', '3306'),
             'database' => 'geolocalizacion2',
             'username' => 'root',
-            'password' => '',
+            'password' => 'root',
             'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
             'prefix' => '',
             'strict' => true,
             'engine' => null,
