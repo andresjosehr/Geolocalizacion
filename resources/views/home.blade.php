@@ -27,7 +27,7 @@
              
 
             @include("header");
-            @include("modal");
+            
 
     <style>
       .map {
@@ -48,12 +48,11 @@
 
 
         <!-- page content -->
-        <h1 id="contenedor" style="padding-left: 260px;padding-bottom: 29px;"></h1>
+        <div id="contenedor"></div>
         <div class="right_col section-mapa" role="main">
           <div id="map" class="map"></div>
         </div>
 
-        <button type="button" class="btn btn-primary instalacion-info2" id="instalacion-info" data-toggle="modal" data-target=".bs-example-modal-sm2">Small modal</button>
         <button type="button" class="btn btn-primary instalacion-info" id="instalacion-info" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
 
         <script type="text/javascript">
@@ -115,20 +114,12 @@
       map.on("click", function(e) {
           map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
 
-              // $(".instalacion-info").click();
-
               var id    = feature.values_.name;
-              var url   = "<?php echo Request::root() ?>/ConsultaInicialModal";
+              var url   = "<?php echo Request::root() ?>/ConsultaInicialModal-inter";
               var datos = $('#consulta-form').serialize();
 
-              if (id==2) {
-                $(".instalacion-info2").click();
-              }
-              if (id==1) {
-                $(".instalacion-info").click();
-              }
 
-               // $("#contenedor").load(url, {id_instalacion: id});
+                $("#contenedor").load(url, {id_instalacion: id});
           })
       });
 
@@ -140,48 +131,6 @@
     </script>
 
     <script>
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-      title: {
-            display: true,
-            text: 'PH2',
-            position: "left"
-        },
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
 var ctx = document.getElementById("myChart2");
 var myChart = new Chart(ctx, {
     type: 'line',

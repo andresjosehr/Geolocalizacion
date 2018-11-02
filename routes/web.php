@@ -11,19 +11,18 @@
 |
 */
 
-
+use App\log_biofiltro;
+use App\instalacion;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/db_instalaciones', 'InstalacionesController@ConsultaInicial')->name('/db_instalaciones');
 
 
-// Route::get('/Prueba', function(){ return view('prueba'); }); 
+Route::post('/ConsultaInicialModal-inter', "InstalacionesController@ConsultaInicialModal"); 
 
 
+Route::get('/Prueba', "InstalacionesController@ConsultaInicialModal"); 
 
-Route::post('/ConsultaInicialModal', 'InstalacionesController@Consulta24Hrs'); 
-
-// Route::post('/ConsultaInstalacion','InstalacionesController@post'); 
 
 
