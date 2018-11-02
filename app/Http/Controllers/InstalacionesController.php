@@ -10,7 +10,9 @@ class InstalacionesController extends Controller{
 
     public function ConsultaInicial(){
     
-	    $instalaciones = DB::table('instalaciones')->get();
+	    $instalaciones = DB::table('instalaciones')
+                        ->where("id","2")
+                        ->get();
 	    return view('/home', ['Instalacioness' => $instalaciones]); 
 
     }

@@ -105,7 +105,7 @@
       layers: [new ol.layer.Tile({ source: new ol.source.OSM() }), @foreach ($Instalacioness as $Instalacion) Marcador({{ $Instalacion->longitud }}, {{ $Instalacion->latitud }}, {{ $Instalacion->id }}), @endforeach ],
       target: document.getElementById('map'),
       view: new ol.View({
-      center: [-72.069960, -37.157991],
+      center: [-71.097899, -34.766003],
       zoom: 7,
       projection: 'EPSG:4326'
       })
