@@ -114,12 +114,13 @@
       map.on("click", function(e) {
           map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
 
+
               var id    = feature.values_.name;
               var url   = "<?php echo Request::root() ?>/ConsultaInicialModal-inter";
               var datos = $('#consulta-form').serialize();
 
-
-                $("#contenedor").load(url, {id_instalacion: id});
+                
+                 $("#contenedor").load(url, {id_instalacion: id});
           })
       });
 

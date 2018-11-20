@@ -45,8 +45,8 @@
     <!-- Latest compiled and minified CSS -->
 
 
-    <script src="https://openlayers.org/en/v4.5.0/build/ol-debug.js"></script>
-    <link href="https://openlayers.org/en/v4.5.0/css/ol.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.5/ol-debug.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.5/ol.css" rel="stylesheet" />
 
   </head>
 
@@ -68,7 +68,7 @@
               </div>
               <div class="profile_info">
                 <span>Bienvenido,</span>
-                <h2></h2>
+                <h2>{{ $Usuario->name }}</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->

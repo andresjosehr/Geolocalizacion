@@ -6,14 +6,18 @@ use Illuminate\Http\Request;
 
 use DB;
 
+use Illuminate\Support\Facades\Auth;
+
 class InstalacionesController extends Controller{
 
     public function ConsultaInicial(){
+
+      $user = Auth::user();
     
 	    $instalaciones = DB::table('instalaciones')
-                        ->where("id","2")
+                        ->where("id", $user->instalacion_asignada)
                         ->get();
-	    return view('/home', ['Instalacioness' => $instalaciones]); 
+	    return view('/home', ['Instalacioness' => $instalaciones, "Usuario" => $user]); 
 
     }
 
@@ -25,11 +29,15 @@ class InstalacionesController extends Controller{
                             ->where("id", $_POST["id_instalacion"])
                             ->first();
 
+
+
+
          
             $now = new \DateTime();
             $fecha = $now->format('d-m-Y H:i:s');;
             $nuevafecha = strtotime ( '-1 day' , strtotime ( $fecha ) ) ;
             $nuevafecha = date ( 'Y-m-d H:i:s' , $nuevafecha );
+
 
             $datos = DB::table($instalacion->tabla_asociada)
                 ->select(DB::raw("SUM(mt_value) as valor, mt_time as fecha"))
@@ -39,15 +47,20 @@ class InstalacionesController extends Controller{
                 ->orderBy("mt_time", "ASC")
                 ->get();
 
-            $UltimaMedicion = DB::table($instalacion->tabla_asociada)
-             ->where("mt_name", $instalacion->datos)
-             ->orderBy("mt_time", "DESC")
-             ->first();
-                    
+
+                $UltimaMedicion = DB::table($instalacion->tabla_asociada)
+                 ->where("mt_name", $instalacion->datos)
+                 ->orderBy("mt_time", "DESC")
+                 ->first();
 
 
+                 if ($_POST["id_instalacion"]==2) {
+                   return view("modals.modal1", ["datos" => $datos, "instalacion_info" => $instalacion, "ultima_medicion" => $UltimaMedicion]);
+                 }
 
-        return view("modal", ["datos" => $datos, "instalacion_info" => $instalacion, "ultima_medicion" => $UltimaMedicion]);
+                 if ($_POST["id_instalacion"]==1) {
+                   return view("modals.modal2", ["datos" => $datos, "instalacion_info" => $instalacion, "ultima_medicion" => $UltimaMedicion]);
+                 }
 
      }
 

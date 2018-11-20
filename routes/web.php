@@ -16,6 +16,16 @@ use App\instalacion;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/login', function (){
+
+	return view("auth/login");
+
+})->name('login');
+
+
+
+
 Route::get('/db_instalaciones', 'InstalacionesController@ConsultaInicial')->name('/db_instalaciones');
 
 
