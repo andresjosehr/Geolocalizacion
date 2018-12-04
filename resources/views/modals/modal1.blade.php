@@ -124,7 +124,7 @@
                    <thead>
                      <tr class="headings">
                        <th class="column-title">Fecha/Hora</th>
-                       <th class="column-title">PH</th>
+                       <th class="column-title">Nivel</th>
                        <th class="bulk-actions" colspan="7">
                          <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                        </th>
@@ -146,7 +146,6 @@
             @if ($instalacion_info->id=="2")
               <div style="padding-top: 30px">
                 <button class="btn btn-primary btn-block">Bomba 1</button>
-                <button class="btn btn-primary btn-block">Bomba 2</button>
               </div>
             @endif
             @if ($instalacion_info->id!="2")
@@ -183,7 +182,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -198,7 +196,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: [@foreach ($datos as $DatosXF) "{{ $DatosXF->fecha }}", @endforeach],
         datasets: [{
-            label: 'Litros por hora',
+            label: 'Litros por minuto',
             data: [@foreach ($datos as $DatosXV) {{ $DatosXV->valor }}, @endforeach],
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderWidth: 1
