@@ -235,4 +235,13 @@
         }
     }
 });
+
+        $(".loader-opacidad").addClass("loader-none");
+        $(".loader-opacidad").removeClass("loader-block");
+        
+        
+        $(".loading").addClass("loader-none");
+        $(".loading").removeClass("loader-block");
+
+
 </script>

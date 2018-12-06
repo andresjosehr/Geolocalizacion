@@ -62,6 +62,8 @@ class InstalacionesController extends Controller{
                    return view("modals.modal2", ["datos" => $datos, "instalacion_info" => $instalacion, "ultima_medicion" => $UltimaMedicion]);
                  }
 
+
+
      }
 
  

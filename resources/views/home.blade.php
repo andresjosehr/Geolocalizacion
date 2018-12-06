@@ -23,12 +23,10 @@
 @endsection
  --}}
 
+        
 
-             
-
-            @include("header");
-            
-
+    @include("header");          
+  
     <style>
       .map {
         height: 120%;
@@ -42,9 +40,52 @@
       .right_col{
         margin-top: -19px !important;
       }
+      .loader-opacidad{
+        background-color: black;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 999;
+        top: 0px;
+        opacity: 0.7;
+      }
+      .loader-block{
+        display: block;
+      }
+
+      .loader-none{
+        display: none;
+      }
+
+      .loading{
+        width:160px;
+        height:160px;
+        border-radius:150px;
+        border:15px solid #fff;
+        border-top-color:rgba(0,0,0,0.3);
+        box-sizing:border-box;
+        position:absolute;
+        top:50%;left:50%;
+        margin-top:-80px;
+        margin-left:-80px;
+        animation:loading 1.2s linear infinite;
+        -webkit-animation:loading 1.2s linear infinite;
+        z-index: 9999;
+      }
+      @keyframes loading{
+        0%{transform:rotate(0deg)}
+        100%{transform:rotate(360deg)}
+      }
+      @-webkit-keyframes loading{
+        0%{-webkit-transform:rotate(0deg)}
+        100%{-webkit-transform:rotate(360deg)}
+      }
     </style>
 
 
+
+        <div class="loader-opacidad loader-none"></div>
+        <div class="loading adsf loader-none"></div>
 
 
         <!-- page content -->
@@ -83,6 +124,7 @@
         anchor: [0.5, 46],
         anchorXUnits: 'fraction',
         anchorYUnits: 'pixels',
+        cursor: "pointer",
         opacity: 0.75,
         src: 'images/marcador.png',
         id: "1"
@@ -111,20 +153,38 @@
       })
     });
 
+    map.on("pointermove", function (evt) {
+        var hit = map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
+            return true;
+        }); 
+        if (hit) {
+            map.getTarget().style.cursor = 'pointer';
+        } else {
+            map.getTarget().style.cursor = '';
+        }
+    });
+
       map.on("click", function(e) {
           map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
 
 
+
+              $(".loader-opacidad").addClass("loader-block");
+              $(".loader-opacidad").removeClass("loader-none");
+
+              $(".loading").addClass("loader-block");
+              $(".loading").removeClass("loader-none");
+
               var id    = feature.values_.name;
               var url   = "<?php echo Request::root() ?>/ConsultaInicialModal-inter";
               var datos = $('#consulta-form').serialize();
-
-                
-                 $("#contenedor").load(url, {id_instalacion: id});
+              
+              $("#contenedor").load(url, {id_instalacion: id});
           })
       });
 
 })();
+
 
 
 
