@@ -32,7 +32,7 @@ Route::get('/db_instalaciones', 'InstalacionesController@ConsultaInicial')->name
 Route::post('/ConsultaInicialModal-inter', "InstalacionesController@ConsultaInicialModal"); 
 
 
-Route::get('/Prueba', "InstalacionesController@ConsultaInicialModal"); 
+Route::get('/Prueba', "PruebaController@index"); 
 
 
 

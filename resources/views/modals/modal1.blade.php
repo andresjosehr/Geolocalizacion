@@ -663,13 +663,7 @@
               <div class="beaker">
                 <div class="clip"></div>
                 <div class="greengoo">
-                  <div class="bubble" id="one"></div>
-                  <div class="bubble" id="two"></div>
-                  <div class="bubble" id="four"></div>
-                  <div class="bubble" id="five"></div>
-                  <div class="bubble" id="six"></div>
-                  <div class="bubble" id="seven"></div>
-                  <div class="bubble" id="one"></div>
+
                   <svg height="1500px" xmlns="http://www.w3.org/2000/svg" version="1.1">
                     <defs>
                       <filter id="goo">
@@ -713,11 +707,24 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12"><canvas id="myChart" width="90%" height="12%"></canvas></div>
+            <div class="col-md-12" style="overflow-x: scroll;">
+              <div style="width: 6000px; height: 200px;">
+                <canvas id="myChart"></canvas>
+              </div>
+            </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <div class="row">
+          <div class="col-md-6" align="left">
+            <button type="button" onclick="Graficar(0, 0, 0, '{{ $instalacion_info->id }}')" class="btn btn-default btn-primary">Dia</button>
+            <button type="button" onclick="Graficar(1, 0, 0, '{{ $instalacion_info->id }}')" class="btn btn-default btn-primary">Semana</button>
+            <button type="button" onclick="Graficar(2, 0, 0, '{{ $instalacion_info->id }}')" class="btn btn-default btn-primary">Mes</button>
+          </div>
+          <div class="col-md-6" align="right">
+            <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -727,6 +734,7 @@
   $(".instalacion-info").click();
 
   var ctx = document.getElementById("myChart");
+  ctx.height = 500;
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -739,11 +747,17 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
+      maintainAspectRatio: false,
       // title: {
       //       display: true,
       //       text: 'Litros',
       //       position: "left"
       //   },
+      elements: { 
+        point: { 
+          radius: .5 
+        } 
+      },
         scales: {
             yAxes: [{
                 ticks: {
@@ -759,4 +773,5 @@ var myChart = new Chart(ctx, {
 
         $(".loading").addClass("loader-none");
         $(".loading").removeClass("loader-block");
+
 </script>

@@ -179,14 +179,27 @@
               var url   = "<?php echo Request::root() ?>/ConsultaInicialModal-inter";
               var datos = $('#consulta-form').serialize();
               
-              $("#contenedor").load(url, {id_instalacion: id});
+              $("#contenedor").load(url, {id_instalacion: id, status: "0"});
           })
       });
 
 })();
 
 
+        function Graficar(status, fecha1, fecha2, id) {
+          var url   = "<?php echo Request::root() ?>/ConsultaInicialModal-inter";
 
+              $(".loader-opacidad").addClass("loader-block");
+              $(".loader-opacidad").removeClass("loader-none");
+
+              $(".loading").addClass("loader-block");
+              $(".loading").removeClass("loader-none");
+
+              $( "#close" ).click();
+
+            $("#contenedor").load(url, {id_instalacion: id, status: status})
+
+        }
 
 
     </script>

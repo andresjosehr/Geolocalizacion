@@ -10,39 +10,22 @@ class PruebaController extends Controller{
  		public function index(){ 
 
 
- 			 // $datos = DB::select('SELECT mt_time, SUM(mt_value) mt_value 
- 			 // 						FROM log_biofiltro 
- 			 // 							WHERE mt_time >= NOW() - INTERVAL 1 DAY 
- 			 // 								AND mt_name="Biofiltro--Pozo.AIL87" 
- 			 // 									GROUP BY HOUR(mt_time) ORDER BY mt_time ASC');
-    		
+            $now = new \DateTime();
+            $fecha = $now->format('d-m-Y H:i:s');;
+            $nuevafecha = strtotime ( '-1 day' , strtotime ( $fecha ) ) ;
+            $nuevafecha = date ( 'Y-m-d H:i:s' , $nuevafecha );
 
 
-    		// $datos = DB::table("log_biofiltro")
-    		// ->where("mt_time", ">=", "NOW() - INTERVAL 1 DAY")
-    		// ->where("mt_name", "=", "Biofiltro--Pozo.AIL87")
-    		// 	->get();
+            $datos = DB::connection('mysql2')
+                ->table("mt_biofil01")
+                ->select(DB::raw("mt_time, TIME(DATE_SUB(mt_time,INTERVAL (MINUTE(mt_time)%10) MINUTE)) as fecha, SUM(IFNULL(mt_time,0)) as suma"))
+                // ->where("mt_name", "=", "Biofiltro--Pozo.AIL87")
+                ->where("mt_time", ">=", $nuevafecha)
+                ->groupBy("tiempo")
+                ->orderBy("mt_time", "ASC")
+                ->get();
 
 
- 					 // $data = log_biofiltro::select(DB::raw("mt_time, mt_value"))
-					// 		        ->groupBy("HOUR(mt_time)")
-					// 		        ->orderBy('mt_time', 'ASC')
-					// 		        ->get();
-
-
-			$now = new \DateTime();
-			$fecha = $now->format('d-m-Y H:i:s');;
-			$nuevafecha = strtotime ( '-1 day' , strtotime ( $fecha ) ) ;
-			$nuevafecha = date ( 'Y-m-d H:i:s' , $nuevafecha );
-
-    		$datos = DB::table("log_biofiltro")
-    		->select(DB::raw("mt_time"), DB::raw("mt_value"))
-    		->where("mt_name", "=", "Biofiltro--Pozo.AIL87")
-    		->where("mt_time", ">=", $nuevafecha)
-    			->get();
-
-    		// $datos=$datos->groupBy('HOUR(mt_time)');
-
-    			return $datos;
-					 		} 
+               return $datos;
+ 		} 
  	} 
