@@ -24,8 +24,6 @@ Route::get('/login', function (){
 })->name('login');
 
 
-
-
 Route::get('/db_instalaciones', 'InstalacionesController@ConsultaInicial')->name('/db_instalaciones');
 
 

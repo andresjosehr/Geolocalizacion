@@ -55,6 +55,7 @@ class InstalacionesController extends Controller{
 
             if ($status==0 || $status==1 || $status==2) {
 
+
                 $datos = DB::connection('mysql2')
                 ->table($instalacion->tabla_asociada)
                 ->select(DB::raw("mt_time, TIME(DATE_SUB(mt_time,INTERVAL (MINUTE(mt_time)%10) MINUTE)) as fecha, SUM(IFNULL(mt_time,0)) as valor"))
@@ -68,11 +69,22 @@ class InstalacionesController extends Controller{
 
             if ($status==3) {
 
+              $fecha_inicio=$_POST["fecha_inicio"];
+              $fecha_fin=$_POST["fecha_fin"];
+              $id_instalacion = $_POST["id_instalacion"];
+
+              ?><script>
+                alert("<?php echo $id_instalacion ?>")
+                alert("<?php echo $fecha_inicio ?>")
+                alert("<?php echo $fecha_fin ?>")
+              </script><?php
+
                 $datos = DB::connection('mysql2')
                 ->table($instalacion->tabla_asociada)
                 ->select(DB::raw("mt_time, TIME(DATE_SUB(mt_time,INTERVAL (MINUTE(mt_time)%10) MINUTE)) as fecha, SUM(IFNULL(mt_time,0)) as valor"))
                 ->where("mt_name", "=", $instalacion->datos)
-                ->where("mt_time", ">=", $nuevafecha)
+                ->where("mt_time", ">=", $fecha_inicio)
+                ->where("mt_time", "<=", $fecha_fin)
                 ->groupBy('mt_time')
                 ->orderBy("mt_time", "ASC")
                 ->get();

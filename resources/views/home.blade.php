@@ -186,8 +186,8 @@
 })();
 
 
-        function Graficar(status, fecha1, fecha2, id) {
-          var url   = "<?php echo Request::root() ?>/ConsultaInicialModal-inter";
+        function Graficar(status, id) {
+           var url   = "<?php echo Request::root() ?>/ConsultaInicialModal-inter";
 
               $(".loader-opacidad").addClass("loader-block");
               $(".loader-opacidad").removeClass("loader-none");
@@ -195,104 +195,25 @@
               $(".loading").addClass("loader-block");
               $(".loading").removeClass("loader-none");
 
-              $( "#close" ).click();
+              $("#close").click();
 
-            $("#contenedor").load(url, {id_instalacion: id, status: status})
+              if (status!=3) {
+                $("#contenedor").load(url, {id_instalacion: id, status: status})
+              } else{
+
+                var fecha1 = document.getElementById('myDatepicker').value;
+                var fecha2 = document.getElementById('myDatepicker2').value;
+
+                $("#contenedor").load(url, {id_instalacion: id,fecha_inicio: fecha1, fecha_fin: fecha2, status: status})
+
+              }
 
         }
 
 
     </script>
 
-    <script>
-var ctx = document.getElementById("myChart2");
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ["Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: 'Litros por minuto',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-      title: {
-            display: true,
-            text: 'Litros',
-            position: "left"
-        },
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
 
-
-
-var ctx = document.getElementById("myCharts");
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-      title: {
-            display: true,
-            text: 'PH2',
-            position: "left"
-        },
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
-</script>
 
     <script src="js/main.js">></script>
 
@@ -354,12 +275,11 @@ var myChart = new Chart(ctx, {
 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.min.js"></script>
-    
 
-          <script>
-            $('#myDatepicker').datetimepicker();  
-            $('#myDatepicker2').datetimepicker();  
-        </script>
+    <script>
+        $('#myDatepicker').datetimepicker();  
+        $('#myDatepicker2').datetimepicker();  
+    </script>
 
   </body>
 </html>

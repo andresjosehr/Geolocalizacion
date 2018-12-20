@@ -550,23 +550,23 @@
           <div class="col-md-6">
             <div class="row">
               <div class="col-md-5">
-                <div class='input-group date custom-inputgroup' id='myDatepicker'>
-                  <input type='text' class="form-control custom-date" placeholder="Consultar Desde" />
+                <div class='input-group date custom-inputgroup'>
+                  <input type='date' id='myDatepicker' class="form-control custom-date" placeholder="Consultar Desde" />
                   <span class="input-group-addon custom-addon">
                      <span class="glyphicon glyphicon-calendar"></span>
                   </span>
                 </div>
               </div>
               <div class="col-md-5">
-                <div class='input-group date custom-inputgroup' id='myDatepicker2'>
-                  <input type='text' class="form-control custom-date" placeholder="Hasta" />
+                <div class='input-group date custom-inputgroup'>
+                  <input type='date' id='myDatepicker2' class="form-control custom-date" placeholder="Hasta" />
                   <span class="input-group-addon custom-addon">
                      <span class="glyphicon glyphicon-calendar"></span>
                   </span>
                 </div>
               </div>
               <div class="col-md-2">
-                <button class="btn btn-primary btn-date btn-round">
+                <button onclick="Graficar(3, {{ $instalacion_info->id }})" class="btn btn-primary btn-date btn-round">
                   <i class="fas fa-long-arrow-alt-right"></i>
                 </button>
               </div>
@@ -663,7 +663,6 @@
               <div class="beaker">
                 <div class="clip"></div>
                 <div class="greengoo">
-
                   <svg height="1500px" xmlns="http://www.w3.org/2000/svg" version="1.1">
                     <defs>
                       <filter id="goo">
@@ -674,7 +673,6 @@
                     </defs>
                   </svg>
                 </div>
-
               </div>
             </div>
             @endif
@@ -717,9 +715,9 @@
       <div class="modal-footer">
         <div class="row">
           <div class="col-md-6" align="left">
-            <button type="button" onclick="Graficar(0, 0, 0, '{{ $instalacion_info->id }}')" class="btn btn-default btn-primary">Dia</button>
-            <button type="button" onclick="Graficar(1, 0, 0, '{{ $instalacion_info->id }}')" class="btn btn-default btn-primary">Semana</button>
-            <button type="button" onclick="Graficar(2, 0, 0, '{{ $instalacion_info->id }}')" class="btn btn-default btn-primary">Mes</button>
+            <button type="button" onclick="Graficar(0, '{{ $instalacion_info->id }}')" class="btn btn-default btn-primary">Dia</button>
+            <button type="button" onclick="Graficar(1, '{{ $instalacion_info->id }}')" class="btn btn-default btn-primary">Semana</button>
+            <button type="button" onclick="Graficar(2, '{{ $instalacion_info->id }}')" class="btn btn-default btn-primary">Mes</button>
           </div>
           <div class="col-md-6" align="right">
             <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -767,6 +765,9 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+
+
+
 
         $(".loader-opacidad").addClass("loader-none");
         $(".loader-opacidad").removeClass("loader-block");
